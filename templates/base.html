@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+{% load staticfiles %}
+   <!--- Basic Page Needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Baidu club</title>
+	<meta name="description" content="">  
+	<meta name="author" content="">
+
+   <!-- Mobile Specific Metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+    ================================================== -->
+   <link rel="stylesheet" href="{% static "css/base.css" %}">
+	<link rel="stylesheet" href="{% static "css/main.css" %}">
+   <link rel="stylesheet" href="{% static "css/media-queries.css" %}">
+
+   <!-- Script
+   =================================================== -->
+	<script src="{% static "js/modernizr.js" %}"></script>
+
+   <!-- Favicons
+	=================================================== -->
+	<link rel="shortcut icon" href="{% static "favicon.png" %}" >
+
+</head>
+
+<body class="homepage">
+
+   <div id="preloader"> 
+	   <div id="status">
+         <img src="{% static "images/loader.gif" %}" height="60" width="60" alt="">
+         <div class="loader">Loading...</div>
+      </div>
+   </div>
+   
+
+   <!-- Header
+   =================================================== -->
+   <header id="main-header">
+
+   	<div class="row header-inner">
+
+
+    	  <!--
+          	<div class="logo">
+	         <a class="smoothscroll" href="#">Baidu club</a>
+	        </div>
+          -->
+
+	      <nav id="nav-wrap">         
+	         
+	         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
+	         	<span class='menu-text'>Show Menu</span>
+	         	<span class="menu-icon"></span>
+	         </a>
+         	<a class="mobile-btn" href="#" title="Hide navigation">
+         		<span class='menu-text'>Hide Menu</span>
+         		<span class="menu-icon"></span>
+         	</a>         
+
+	         <ul id="nav" class="nav">
+	            <li class="current"><a class="smoothscroll" href="#hero">Home.</a></li>
+		         <li><a class="smoothscroll" href="#portfolio">Groups.</a></li>
+	            <li><a class="smoothscroll" href="#about">About.</a></li>
+	            <li><a class="smoothscroll" href="#journal">Blog.</a></li>	            
+	            <li><a class="smoothscroll" href="#contact">Contact.</a></li>
+                 {% if not request.user.is_authenticated %}
+                     <li><form style="margin-bottom: 0px;" action="/account/auth/" method="post">{% csrf_token %}
+                         <li style="">
+                             <input maxlength="254" name="username" id="username" style="width: 90px; height: 44px; border-top-width: 3px; margin-bottom: 0px; padding-top: 12px; display: inline;" type="text" class=""/>
+                             <input name="password" id="password" style="width: 90px; height: 44px; padding-top: 12px; border-top-width: 3px; margin-bottom: 0px; display: inline;" type="password" class=""></li>
+                         <li><button type="submit" class="button grey">Login</button></li>
+                     </form></li>
+
+                 {% endif %}
+                 {% if request.user.is_authenticated %}
+                     <li><a href="/account/logout">Logout.</a></li>
+                 {% endif %}
+	         </ul> 
+
+	      </nav> <!-- /nav-wrap -->	      
+
+	   </div> <!-- /header-inner -->
+
+   </header> 
+
+
+   <!-- Hero
+   =================================================== -->
+   <section id="hero">	
+   	  
+		<div class="row hero-content">
+
+			<div class="twelve columns flex-container">
+
+			   <div id="hero-slider" class="flexslider">
+
+				   <ul class="slides">
+
+					   <!-- Slide -->
+					   <li>
+						   <div class="flex-caption">
+								<h1>Hello,  Here is Baidu club. We make awesome and stunning digital stuff.</h1>
+								<p><a class="button stroke smoothscroll" href="#about">More About Us</a></p>
+							</div>						
+					   </li>
+
+					   <!-- Slide -->
+					   <li>						
+							<div class="flex-caption">
+								<h1 >We imagine, craft and manage your brand in this new digital world.</h1>
+								<p><a class="button stroke smoothscroll" href="#portfolio">See Our Works</a></p>
+							</div>					
+					   </li>
+
+					   <!-- Slide -->
+					   <li>
+						   <div class="flex-caption">
+								<h1 >Take a look at some of <a class="smoothscroll" href="#portfolio" title="">our groups</a> or <a class="smoothscroll" href="#contact" title="">contact us</a> to discuss how I can help you.</h1>
+								<p><a class="button stroke smoothscroll" href="#contact">Get In Touch</a></p>										   
+							</div>
+					   </li>					              
+
+				   </ul>
+
+			   </div> <!-- .flexslider -->				   
+
+	      </div> <!-- .flex-container -->      
+
+		</div> <!-- .hero-content -->	   
+
+   </section> <!-- #hero -->
+
+
+   <!-- Portfolio
+   ================================================== -->
+   <section id="portfolio">
+
+      <div class="row section-head">
+
+      	<div class="twelve columns">
+
+	         <a href="/group"><h1>Our groups<span>.</span></h1></a>
+
+	         <hr />
+
+	         <p>here you can see our groups!
+	         </p>
+
+	      </div>
+
+      </div>
+
+      <div class="row items">
+
+      	<div class="twelve columns">
+
+            <div id="portfolio-wrapper" class="bgrid-fourth s-bgrid-third mob-bgrid-half group">
+                {% block group %}
+                {% endblock %}
+            </div> <!-- /portfolio-wrapper -->
+
+         </div> <!-- /twelve -->
+
+      </div>  <!-- /row -->
+      
+   </section> <!-- /Portfolio -->
+
+   <!-- About Section
+   ================================================== -->
+   <section id="about">
+
+   	<div class="row section-head">
+
+   		<div class="twelve columns">
+
+	         <h1>About Our club<span>.</span></h1>
+
+	         <hr />
+	      </div>
+
+      </div>
+
+          {% block about %}
+          {% endblock %}
+
+
+      <!-- team
+   	=================================================== -->
+   	<div id='team'>
+
+	      <div class="row team section-head">
+
+	   		<div class="twelve columns">
+
+		         <h1>Our Member<span>.</span></h1>
+
+		         <hr />
+
+		         <p>Here you can see our members!
+		         </p>	         
+
+		      </div>
+
+	      </div>
+
+      	<div class="row about-content">
+
+      		<div class="twelve columns">
+
+		         <div id="team-wrapper" class="bgrid-half mob-bgrid-whole group">
+
+		            <div class="bgrid member">
+
+		               <div class="member-header">
+
+		                 	<div class="member-pic">
+									<img src="{% static "favicon.png" %}" alt=""/>
+		                 	</div>
+
+		                  <div class="member-name">
+		                     <h3>Baidu club</h3>
+		                     <span>The most interseting club</span>
+		                  </div>
+
+		               </div>							
+
+		               <p>欢迎各位来到百度俱乐部</p>
+
+		               <ul class="member-social">
+		                  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                           <li><a href="#"><i class="fa fa-github"></i></a></li>
+		               </ul>
+
+		          	</div> <!-- /member -->
+                     {% block member %}
+                     {% endblock %}
+		         </div> <!-- /twelve -->
+
+	         </div> <!-- /team-wrapper -->
+
+         </div> <!-- /row -->
+
+      </div> <!-- /team -->           
+
+   </section> <!-- /about -->
+
+
+   <!-- journal
+   =================================================== -->
+   <section id="journal">
+
+	   <div class="row section-head">
+
+	   	<div class="twelve columns">
+
+			   <a href="/blog"><h1>Our Latest Blogs<span>.</span></h1></a>
+
+			   <hr />
+
+			   <p>Every day is new to everyone!
+		      </p>	         
+
+		    </div>
+
+	   </div>
+
+      <div class="row">
+
+      	<div class="twelve columns">
+
+	         <div id="blog-wrapper" class="bgrid-third s-bgrid-half mob-bgrid-whole group">
+                 {% block blog %}
+                {% endblock %}
+	         </div> <!-- /blog-wrapper -->
+
+	      </div> <!-- /twelve -->
+
+      </div> <!-- /row -->
+
+   </section> <!-- /blog -->
+
+   
+   <!-- Contact Section
+   ================================================== -->
+   <section id="contact">
+
+   	<div class="row section-head">
+
+   		<div class="twelve columns">
+
+	         <h1>Get In Touch With Us<span>.</span></h1>
+
+	         <hr />
+
+	         <p>Say you want join us
+	         </p>
+
+	      </div>
+
+      </div>
+
+      <div class="row form-section">
+      	
+      	<div id="contact-form" class="twelve columns">
+
+            <form name="" id="" method="post" action="/join/">
+                {% csrf_token %}
+      			<fieldset>
+
+                  <div class="row">	             
+	                  <div class="six columns mob-whole">	
+	                  	<label for="contactLname">Name <span class="required">*</span></label>      						   
+	      					<input name="contactLname" type="text" id="contactLname" placeholder="Name" value="" />	      					
+	                  </div>
+                      <div style="color: #ffff00">
+                          <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose a group↓</h1>
+                          </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="six columns mob-whole">
+	                  	<label for="contactEmail">Email <span class="required">*</span></label>
+	      					<input name="contactEmail" type="text" id="contactEmail" placeholder="Email" value="" />
+	                  </div>
+
+	                  <div class="six columns mob-whole">	
+	                  	<label for="selectList" >Select Group</label>
+								<select id="selectList" title="selectList" name="selectList">
+                                    {% block choice %}
+                                    {% endblock %}
+								</select>
+	                  </div>
+
+
+
+                  </div>
+
+                  <div class="row">
+
+	                  <div class="twelve columns">
+	                     <label  for="contactMessage">Message <span class="required">*</span></label>
+	                     <textarea name="contactMessage"  id="contactMessage" placeholder="About Yourself" rows="10" cols="50" ></textarea>
+	                  </div>
+
+                  </div>
+
+                  <div>
+                     <button class="submit full-width">Send Message</button>
+                     <div id="image-loader">
+                        <img src="{% static "images/loader.gif" %}" alt="" />
+                     </div>
+                  </div>
+
+      			</fieldset>
+      				
+      		</form> <!-- /contactForm -->
+
+            <!-- message box -->
+            <div id="message-warning"></div>
+            <div id="message-success">
+               <i class="fa fa-check"></i>Your message was sent, thank you!<br />
+    			</div>
+
+         </div> <!-- /contact-form -->      	
+
+      </div> <!-- /form-section -->     
+
+   </section>  <!-- /contact-->
+
+
+   <!-- Footer
+   ================================================== -->
+   <footer>
+
+      <div class="row">       
+
+         <div class="six columns tab-whole footer-about">
+				
+				<h3>About Website</h3>
+               
+            <p>利用Django框架做成，基于styleout这个网站的代码进行了大幅度的更改
+            </p>
+
+            <p>百度菁英俱乐部</p>
+
+         </div> <!-- /footer-about -->
+
+         <div class="six columns tab-whole right-cols">
+
+            <div class="row">
+
+               <div class="columns">
+                  <h3 class="address">Contact Me</h3>
+                  <p>
+                  	华中科技大学 沁苑 东十三701<br>
+                  	湖北省 武汉市 武昌区 <br>
+                  430074 China
+                  </p>
+
+                  <ul>
+                    <li><a href="#"></a></li>
+                  </ul>
+               </div> <!-- /columns -->             
+
+               <div class="columns last">
+                  <h3 class="contact">Follow Us</h3>
+
+                  <ul>
+                     <li><a href="https://www.facebook.com/">Facebook</a></li>
+                     <li><a href="https://twitter.com/">Twitter</a></li>
+                     <li><a href="https://plus.google.com/">GooglePlus</a></li>
+                     <li><a href="http://tieba.baidu.com/">百度贴吧</a></li>
+                  </ul>
+                  
+               </div> <!-- /columns --> 
+
+            </div> <!-- /Row(nested) -->
+
+         </div>
+
+         <p class="copyright">&copy; 2015. Design by <a href="http://user.qzone.qq.com/574514814/">透指风</a></p>
+
+         <div id="go-top">
+            <a class="smoothscroll" title="Back to Top" href="#hero"><span>Top</span><i class="fa fa-long-arrow-up"></i></a>
+         </div>
+
+      </div> <!-- /row -->
+
+   </footer> <!-- /footer -->
+
+
+   <!-- Java Script
+   ================================================== -->
+   <script src="{% static "jquery.min.js" %}"></script>
+   <script>window.jQuery || document.write('<script src="{% static "js/jquery-1.10.2.min.js" %}"><\/script>')</script>
+   <script type="text/javascript" src="{% static "js/jquery-migrate-1.2.1.min.js" %}"></script>
+   <script src="{% static "js/jquery.flexslider.js" %}"></script>
+   <script src="{% static "js/jquery.fittext.js" %}"></script>
+   <script src="{% static "js/backstretch.js" %}"></script>
+   <script src="{% static "js/waypoints.js" %}"></script>
+   <script src="{% static "js/main.js" %}"></script>
+
+</body>
+
+</html>

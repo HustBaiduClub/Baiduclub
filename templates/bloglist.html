@@ -1,0 +1,41 @@
+{% extends 'blog.html' %}
+{% block bloglist %}
+    {% for post in lists.object_list %}
+                <article class="entry">
+
+					<header class="entry-header">
+
+						<h1 class="entry-title">
+							<a title="" href="{{ post.id }}">{{ post.title }}</a>
+						</h1>
+
+						<div class="entry-meta">
+							<ul>
+								<li>{{ post.date }}</li>
+								<span class="meta-sep">•</span>
+								<li><a rel="category tag" title="" href="#">Ghost</a></li>
+								<span class="meta-sep">•</span>
+								<li>{{ post.user }}</li>
+							</ul>
+						</div>
+
+					</header>
+
+					<div class="entry-content">
+						<p>{{ post.body }}</p>
+					</div>
+
+				</article> <!-- /entry -->
+    {% endfor %}
+    <div class="pagenav group">
+    {% if lists.has_previous %}
+        <span class="prev"><a href="?page= {{ lists.previous_page_number }}" rel="prev">Previous</a></span>
+    {% endif %}
+    {% if lists.has_next %}
+        <span class="next"><a href="?page={{ lists.next_page_number }}" rel="next">Next</a></span>
+    {% endif %}
+
+
+    </div>
+    
+{% endblock %}

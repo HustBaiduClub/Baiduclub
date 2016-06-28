@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+{% load static from staticfiles %}
+   <!--- Basic Page Needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Baidu club</title>
+	<meta name="description" content="">  
+	<meta name="author" content="">
+
+   <!-- Mobile Specific Metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+    ================================================== -->
+   <link rel="stylesheet" href="{% static "css/base.css" %}">
+	<link rel="stylesheet" href="{% static "css/main.css" %}">
+   <link rel="stylesheet" href="{% static "css/media-queries.css" %}">
+
+   <!-- Script
+   =================================================== -->
+	<script src="{% static "js/modernizr.js" %}"></script>
+
+   <!-- Favicons
+	=================================================== -->
+	<link rel="shortcut icon" href="{% static "favicon.png" %}" >
+
+</head>
+
+<body class="homepage">
+
+   <div id="preloader"> 
+	   <div id="status">
+         <img src="{% static "images/loader.gif" %}" height="60" width="60" alt="">
+         <div class="loader">Loading...</div>
+      </div>
+   </div>
+   
+
+   <!-- Header
+   =================================================== -->
+   <header id="main-header">
+
+   	<div class="row header-inner">
+
+
+    	  <!--
+          	<div class="logo">
+	         <a class="smoothscroll" href="#">Aheader</a>
+	        </div>
+          -->
+
+	      <nav id="nav-wrap">         
+	         
+	         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
+	         	<span class='menu-text'>Show Menu</span>
+	         	<span class="menu-icon"></span>
+	         </a>
+         	<a class="mobile-btn" href="#" title="Hide navigation">
+         		<span class='menu-text'>Hide Menu</span>
+         		<span class="menu-icon"></span>
+         	</a>         
+
+	         <ul id="nav" class="nav">
+	            <li class="current"><a class="" href="/">Home.</a></li>
+		         <li><a class="smoothscroll" href="#portfolio">Dynamic.</a></li>
+	            <li><a class="" href="/blog">Blog.</a></li>
+	         </ul> 
+
+	      </nav> <!-- /nav-wrap -->	      
+
+	   </div> <!-- /header-inner -->
+
+   </header> 
+
+
+   <!-- Page Title
+   ================================================== -->
+   <section id="page-title">	
+   	  
+		<div class="row">
+
+			<div class="twelve columns">
+
+				<h1>Our Blog<span>.</span></h1>
+				<p>Stay Hungry,Stay Foolish.</p>
+
+			</div>			    
+
+		</div> <!-- /row -->	   
+
+   </section> <!-- /page-title -->
+
+
+   <!-- Content
+   ================================================== -->
+   <section id="content">
+
+   	<div class="row">
+
+	   	<div id="main" class="tab-whole eight columns entries">
+                {% block bloglist %}
+                {% endblock %}
+
+                {% block blogsingle %}
+                {% endblock %}
+	      </div> <!-- /main -->  
+
+	   </div> <!-- /row -->      
+
+   </section> <!-- /content -->
+
+
+ <!-- Footer
+   ================================================== -->
+   <footer>
+
+      <div class="row">
+
+         <div class="six columns tab-whole footer-about">
+
+				<h3>About Website</h3>
+
+            <p>利用Django框架做成，基于styleout这个网站的代码进行了大幅度的更改
+            </p>
+
+            <p>百度菁英俱乐部</p>
+
+         </div> <!-- /footer-about -->
+
+         <div class="six columns tab-whole right-cols">
+
+            <div class="row">
+
+               <div class="columns">
+                  <h3 class="address">Contact Me</h3>
+                  <p>
+                  	华中科技大学 沁苑 东十三701<br>
+                  	湖北省 武汉市 武昌区 <br>
+                  430074 China
+                  </p>
+
+                  <ul>
+                    <li><a href="#"></a></li>
+                  </ul>
+               </div> <!-- /columns -->
+
+               <div class="columns last">
+                  <h3 class="contact">Follow Us</h3>
+
+                  <ul>
+                     <li><a href="https://www.facebook.com/">Facebook</a></li>
+                     <li><a href="https://twitter.com/">Twitter</a></li>
+                     <li><a href="https://plus.google.com/">GooglePlus</a></li>
+                     <li><a href="http://tieba.baidu.com/">百度贴吧</a></li>
+                  </ul>
+
+               </div> <!-- /columns -->
+
+            </div> <!-- /Row(nested) -->
+
+         </div>
+
+         <p class="copyright">&copy; 2015. Design by <a href="http://user.qzone.qq.com/574514814/">透指风</a></p>
+
+         <div id="go-top">
+            <a class="smoothscroll" title="Back to Top" href="#hero"><span>Top</span><i class="fa fa-long-arrow-up"></i></a>
+         </div>
+
+      </div> <!-- /row -->
+
+   </footer> <!-- /footer -->
+
+
+   <!-- Java Script
+   ================================================== -->
+   <script src="{% static "jquery.min.js" %}"></script>
+   <script>window.jQuery || document.write('<script src="{% static "js/jquery-1.10.2.min.js" %}"><\/script>')</script>
+   <script type="text/javascript" src="{% static "js/jquery-migrate-1.2.1.min.js" %}"></script>
+   <script src="{% static "js/jquery.flexslider.js" %}"></script>
+   <script src="{% static "js/jquery.fittext.js" %}"></script>
+   <script src="{% static "js/backstretch.js" %}"></script>
+   <script src="{% static "js/waypoints.js" %}"></script>
+   <script src="{% static "js/main.js" %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+{% extends 'blog.html' %}
+{% block blogsingle %}
+            <article class="entry">
+					<header class="entry-header">
+
+						<h1 class="entry-title">
+							{{ post.title }}
+						</h1>
+
+						<div class="entry-meta">
+							<ul>
+								<li>{{ post.date }}</li>
+								<span class="meta-sep">•</span>
+								<li><a rel="category tag" title="" href="#">Ghost</a></li>
+								<span class="meta-sep">•</span>
+								<li>{{ post.user }}</li>
+							</ul>
+						</div>
+
+					</header>
+
+					<div class="entry-content">
+						<p>{{ post.body }}</p>
+					</div>
+
+				</article> <!-- /entry -->
+
+    {% load staticfiles %}
+
+    {% for a in comment %}
+        <div id="comments">
+            <div class="avatar">
+                <img width="50" height="50" alt="" src="{{ a.img_url }}" class="avatar" id="{{ a.user }}">
+            </div>
+            <div class="comment-content">
+                <div class="comment-info">
+                    <cite>{{ a.user }}</cite>
+                        <div class="comment-meta">
+                            <time datetime="{{ a.time }}" class="comment-time">{{ a.time }}</time>
+                        </div>
+                </div>
+            <div class="comment-text">
+                <p>{{ a.content }}</p>
+            </div>
+
+            </div>
+        </div>
+    {% endfor %}
+
+
+
+        {% if request.user.is_authenticated %}
+            <!-- respond -->
+	            <div class="respond">
+
+	               <h3>Leave a Comment</h3>
+
+	               <!-- form -->
+                        <form action="/blog/comment" method="post">
+                            {% csrf_token %}
+                            <fieldset>
+                                    <input type="hidden" value="{{ post.id }}" id="id_id" name="id">
+                                    <input type="hidden" value="{{ post.title }}" id="id_blog" name="blog">
+                            <input type="hidden" value="{{ request.user.username }}" id="id_user" name="user">
+                            <input type="hidden" value="{{ request.user.email }}" id="id_email" name="email">
+                                <div class="group">
+                                        {{ form.content }}
+                                </div>
+                                {% if form.blog.is_hidden %}
+                                    {{ form.blog }}={{ post.title }}
+                                    {% else %}
+                                    <p></p>
+                                {% endif %}
+
+                                <input type="submit" value="Submit" />
+                            </fieldset>
+                        </form>
+
+	            </div> <!-- /respond -->
+
+        {% else %}
+    <!-- respond -->
+	            <div class="respond">
+
+	               <h3>Leave a Comment</h3>
+
+	               <!-- form -->
+                        <form action="/blog/comment" method="post">
+                            {% csrf_token %}
+                            <fieldset>
+                                    <input type="hidden" value="{{ post.id }}" id="id_id" name="id">
+                                    <input type="hidden" value="{{ post.title }}" id="id_blog" name="blog">
+                                <div class="group">
+                                    <label for="id_user">Reviewer Name <span class="required">*</span></label>
+                                    {{ form.user }}
+                                </div>
+                                <div class="group">
+                                    <label for="id_email">Email <span class="required">*</span></label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="group">
+                                        {{ form.content }}
+                                </div>
+                                <div class="group">
+                                    <p>please input words below</p>
+                                </div>
+                                <div class="group">
+                                    {{ form.captcha }}
+                                </div>
+                                {% if form.blog.is_hidden %}
+                                    {{ form.blog }}={{ post.title }}
+                                    {% else %}
+                                    <p></p>
+                                {% endif %}
+
+                                <input type="submit" value="Submit" />
+                            </fieldset>
+                        </form>
+
+	            </div> <!-- /respond -->
+    {% endif %}
+    </div>
+
+
+
+        
+{% endblock %}

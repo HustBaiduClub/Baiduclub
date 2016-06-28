@@ -1,0 +1,21 @@
+{% extends 'portfolio.html' %}
+{% block content %}
+    <div id="portfolio-wrapper" class="bgrid-fourth s-bgrid-third mob-bgrid-half group">
+{% for group in object_list %}
+
+    <div class="bgrid item">
+        <div class="item-wrap">
+
+            <!--<a href="/group/{{ group.id }}"></a>-->
+                <img src="{{ group.group_img }}" alt="{{ group.group }}">
+                <div class="overlay"></div>
+                <div class="portfolio-item-meta">
+                    <h5>{{ group.group }}</h5>
+                    <p>{{ group.intro }}</p>
+                </div>
+        </div>
+    </div> <!-- /item -->
+
+{% endfor %}
+</div>
+{% endblock %}

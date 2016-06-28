@@ -1,0 +1,28 @@
+{% extends 'blog1.html' %}
+{% block member %}
+    {% for post in object_list  %}
+		            <div class="bgrid member">
+
+		               <div class="member-header">
+
+		                 	<div class="member-pic">
+									<img src="{{ post.portrait }}" alt=""/>
+		                 	</div>
+
+		                  <div class="member-name">
+		                     <h3>{{ post.user }}</h3>
+		                     <span>Creative Director</span>
+		                  </div>
+
+		               </div>							
+
+		               <p>{{ post.intro }}</p>
+
+		               <ul class="member-social">
+		                  <li><a href="{{ post.github }}"><i class="fa fa-google-plus"></i></a></li>
+                           <li><a href="{{ post.google_plus }}"><i class="fa fa-github"></i></a></li>
+		               </ul>
+
+		          	</div> <!-- /member -->
+{% endfor %}
+    {% endblock %}

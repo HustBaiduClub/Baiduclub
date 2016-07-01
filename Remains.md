@@ -11,6 +11,5 @@
 <img src="/show/bar1.png"/>
 ##增加一个俱乐部产品页面，链接添加到最上面
 <img src="/show/bar2.png"/>
-##增加Our member底下的github用户地址，现在只有github的图标没有地址,Google plus什么的就算了，先留着
-<img src="/show/github.png"/>
+
 
